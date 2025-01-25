@@ -23,7 +23,7 @@ export const verifyToken = async (
       token,
       process.env.ACCESS_TOKEN_SECRET as Secret
     ) as JwtPayload;
-    req.userId = verified.id;
+    req.body.userId = verified.id;
     next();
   } catch (error: any) {
     console.log('Token verification error', error.message);

@@ -23,6 +23,10 @@ app.use(cors());
 
 // routes
 
+import { router as ProductRoutes } from './routes/productRoutes';
+
+app.use('api/v1/products', ProductRoutes);
+
 app.use(notFoundHandler);
 app.use(errorHandler);
 app.use(limiter);

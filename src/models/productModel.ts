@@ -17,7 +17,7 @@ Below ensures type safety --- The Optional is a utility type from sequelize that
 interface ProductAttributeInterface
   extends Optional<ProductAttributes, 'id' | 'createdAt'> {}
 
-class ProductFields
+class Product
   extends Model<ProductAttributes, ProductAttributeInterface>
   implements ProductAttributes
 {
@@ -30,7 +30,7 @@ class ProductFields
   public createdAt?: Date;
 }
 
-ProductFields.init(
+Product.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -70,3 +70,5 @@ ProductFields.init(
     underscored: false,
   }
 );
+
+export default Product;

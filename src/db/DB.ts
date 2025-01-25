@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
-import dotenv from 'dotenv';
 import { enviromentConfig } from '../config/enviromentConfig';
+import dotenv from 'dotenv';
 dotenv.config();
 
 const isProduction = process.env.NODE_ENV === 'production';
