@@ -3,11 +3,11 @@ import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
-export const verifyToken = (
+export const verifyToken = async (
   req: Request,
   res: Response,
   next: NextFunction
-): void => {
+) => {
   try {
     let token = req.header('Authorization');
     if (!token) {
@@ -27,6 +27,6 @@ export const verifyToken = (
     next();
   } catch (error: any) {
     console.log('Token verification error', error.message);
-    res.status(401).json({ message: 'Some error occured' });
+    res.status(401).json({ message: 'Some error occurred' });
   }
 };
