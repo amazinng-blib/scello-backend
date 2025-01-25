@@ -30,7 +30,7 @@ A RESTful API for managing products in an e-commerce store built with Node.js, E
 3. Set up environment variables:
    \`\`\`
 
-LOCAL_DATABASE_URL=postgres://postgres:postgress@localhost:5432/scello
+LOCAL_DATABASE_URL=postgres://postgres:postgress@localhost:5432/scello  
 DATABASE-URL=postgresql://postgres.pdzevovwkbldszognlex:[PASSWORD]@aws-0-eu-central-1.pooler.supabase.com:5432/postgres
 
 DEV_DB_DIALECT=postgres
