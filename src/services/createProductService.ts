@@ -1,20 +1,20 @@
 import { AppError } from '../middleware/errorHandler';
 import Product from '../models/productModel';
 import { type productType } from '../validation/productSchema';
-import { updateProductDetails } from './updateProductService';
+import { updateProductService } from './updateProductService';
 
-export async function createProduct(payload: productType) {
+export async function createProductService(payload: productType) {
   try {
     /* first, check if the product already exist.
-    /*if the product exist, just that it's out of stock, increase the product stock quantity
-    **/
+     *if the product exist, just that it's out of stock, increase the product stock quantity
+     **/
     const { name, category } = payload;
     const existingProduct = await Product.findOne({
       where: { name, category },
     });
 
     if (existingProduct) {
-      return await updateProductDetails(payload);
+      return await updateProductService(payload);
     }
     const result = await Product.create(payload);
     return result;

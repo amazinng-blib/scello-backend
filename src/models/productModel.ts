@@ -1,8 +1,10 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../db/DB';
+import User from './userModel';
 
 type ProductAttributes = {
   id?: number;
+  creator?: number;
   name: string;
   price: number;
   description: string;
@@ -22,6 +24,7 @@ class Product
   implements ProductAttributes
 {
   public id?: number;
+  public creator?: number;
   public name!: string;
   public price!: number;
   public description!: string;
@@ -36,6 +39,14 @@ Product.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+    },
+
+    creator: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: User,
+        key: 'id',
+      },
     },
     name: {
       type: DataTypes.STRING,
@@ -70,5 +81,14 @@ Product.init(
     underscored: false,
   }
 );
+
+Product.belongsTo(User, {
+  foreignKey: 'creator',
+  as: 'Creator',
+});
+
+User.hasMany(Product, {
+  foreignKey: 'creator',
+});
 
 export default Product;

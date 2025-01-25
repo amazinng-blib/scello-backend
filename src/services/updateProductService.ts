@@ -2,7 +2,7 @@ import { AppError } from '../middleware/errorHandler';
 import Product from '../models/productModel';
 import { type productType } from '../validation/productSchema';
 
-export async function updateProductDetails(payload: productType) {
+export async function updateProductService(payload: productType) {
   try {
     const { name, category } = payload;
     const productExist = await Product.findOne({

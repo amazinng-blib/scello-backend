@@ -1,17 +1,17 @@
 import { Request, Response } from 'express';
 import { productSchema } from '../validation/productSchema';
-import { createProductService } from '../services/createProductService';
+import { updateProductService } from '../services/updateProductService';
 
-export async function createProductController(
+export async function updateProduct(
   req: Request,
   res: Response
 ): Promise<void> {
   try {
     const parsedData = productSchema.parse(req.body);
-    const newProduct = await createProductService(parsedData);
-    res.status(201).json({
-      message: 'Product created successfully',
-      data: newProduct,
+    const product = await updateProductService(parsedData);
+    res.status(200).json({
+      message: 'Product updated successfully',
+      data: product,
     });
   } catch (error: any) {
     if (error instanceof Error) {
