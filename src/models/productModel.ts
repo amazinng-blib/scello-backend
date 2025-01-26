@@ -14,7 +14,7 @@ type ProductAttributes = {
 };
 
 /*
-Below ensures type safety --- The Optional is a utility type from sequelize that allows to make certian fields optional
+Below ensures type safety --- The Optional is a utility type from sequelize that allows to make certain fields optional
 */
 interface ProductAttributeInterface
   extends Optional<ProductAttributes, 'id' | 'createdAt'> {}
