@@ -3,10 +3,10 @@ import Product from '../models/productModel';
 import { type productType } from '../validation/productSchema';
 import { updateProductService } from './updateProductService';
 
-export async function createProductService(payload: productType) {
+export async function createProductService(payload: productType): Promise<any> {
   try {
     /* first, check if the product already exist.
-     *if the product exist, just that it's out of stock, increase the product stock quantity
+     * if the product exist, and it's out of stock, increase the product stock quantity
      **/
     const { name, category } = payload;
     const existingProduct = await Product.findOne({

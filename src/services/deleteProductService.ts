@@ -1,7 +1,7 @@
 import { AppError } from '../middleware/errorHandler';
 import Product from '../models/productModel';
 
-export async function deleteProductService(productId: Number) {
+export async function deleteProductService(productId: number): Promise<any> {
   try {
     const product = await Product.findOne({ where: { id: Number(productId) } });
     if (!product) {

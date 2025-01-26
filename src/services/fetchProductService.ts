@@ -13,7 +13,9 @@ type fetchProductQueryType = {
   sortOrder?: string;
 };
 
-export async function fetchProductService(payload: fetchProductQueryType) {
+export async function fetchProductService(
+  payload: fetchProductQueryType
+): Promise<any> {
   try {
     const {
       category,

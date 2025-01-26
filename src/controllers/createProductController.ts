@@ -5,11 +5,11 @@ import { createProductService } from '../services/createProductService';
 export async function createProductController(
   req: Request,
   res: Response
-): Promise<void> {
+): Promise<any> {
   try {
     const parsedData = productSchema.parse(req.body);
     const newProduct = await createProductService(parsedData);
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Product created successfully',
       data: newProduct,
     });

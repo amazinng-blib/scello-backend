@@ -2,14 +2,11 @@ import { Request, Response } from 'express';
 import { productSchema } from '../validation/productSchema';
 import { updateProductService } from '../services/updateProductService';
 
-export async function updateProduct(
-  req: Request,
-  res: Response
-): Promise<void> {
+export async function updateProduct(req: Request, res: Response): Promise<any> {
   try {
     const parsedData = productSchema.parse(req.body);
     const product = await updateProductService(parsedData);
-    res.status(200).json({
+    return res.status(200).json({
       message: 'Product updated successfully',
       data: product,
     });

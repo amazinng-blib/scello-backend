@@ -1,10 +1,7 @@
 import { Request, Response } from 'express';
 import { fetchProductService } from '../services/fetchProductService';
 
-export async function fetchProducts(
-  req: Request,
-  res: Response
-): Promise<void> {
+export async function fetchProducts(req: Request, res: Response): Promise<any> {
   try {
     const page = Number.parseInt(req.query.page as string) ?? 1;
     const limit = Number.parseInt(req.query.limit as string) ?? 10;
@@ -22,7 +19,7 @@ export async function fetchProducts(
       sortOrder: sortOrder as string,
     });
 
-    res.status(200).json(products);
+    return res.status(200).json(products);
   } catch (error: any) {
     if (error instanceof Error) {
       res.status(400).json({ error: error.message });
