@@ -30,40 +30,44 @@ A RESTful API for managing products in an e-commerce store built with Node.js, E
 3. Set up environment variables:
    \`\`\`
 
-LOCAL_DATABASE_URL=postgres://postgres:postgress@localhost:5432/scello  
-DATABASE-URL=postgresql://postgres.pdzevovwkbldszognlex:[PASSWORD]@aws-0-eu-central-1.pooler.supabase.com:5432/postgres
+- # Clone
 
-DEV_DB_DIALECT=postgres
-DEV_DB_USERNAME=postgres
-DEV_DB_PASSWORD=postgress
-DEV_DB_HOST=localhost
-DEV_DB_USER=scello
+  - git clone {url}
 
-PROD_DB_DIALECT=postgres
-PROD_DB_USERNAME=postgres
-PROD_DB_USER=''
-PROD_DB_PASSWORD=''
-PROD_DB_HOST=''
-PROD_DB_PORT=5432
-JWT_SECRET=your_jwt_secret
-\`\`\`
+  - # Install dependencies
+  - npm install
 
-# Migrations
+  - # Set up environment variables
 
-MIGRATION_ENV=render
-MIGRATION_ENV=local
+  LOCAL_DATABASE_URL=postgres://postgres:postgress@localhost:5432/scello  
+   DATABASE-URL=postgresql://postgres.pdzevovwkbldszognlex:[PASSWORD]@aws-0-eu-central-1.pooler.supabase.com:5432/postgres
 
-NODE_ENV=production
-NODE_ENV=development
+  PORT=6600
 
-4. Start the server:
-   \`\`\`bash
-   npm run dev
-   \`\`\`
+  ACCESS_TOKEN_SECRET=
+
+  MIGRATION_ENV=superbase [remote]  
+   MIGRATION_ENV=local [local]
+
+  NODE_ENV=production  
+   NODE_ENV=development
+
+  DEV_DB_DIALECT=postgres  
+   DEV_DB_USERNAME=postgres  
+   DEV_DB_PASSWORD=postgress  
+   DEV_DB_HOST=localhost  
+   DEV_DB_USER=scello
+
+  PROD_DB_DIALECT=postgres  
+   PROD_DB_USERNAME=postgres  
+   PROD_DB_USER=''  
+   PROD_DB_PASSWORD=''  
+   PROD_DB_HOST=''  
+   PROD_DB_PORT=5432
 
 ## API Documentation
 
-Access the Swagger documentation at \`http://localhost:3000/api-docs\`
+Access the Swagger documentation at \`${baseurl}/api-docs\`
 
 ## Database Schema
 
@@ -77,21 +81,14 @@ Access the Swagger documentation at \`http://localhost:3000/api-docs\`
 - category: STRING (Not Null)
 - createdAt: DATE
 
-## Testing
-
-Run the test suite:
-
-\`\`\`bash
-npm test
-\`\`\`
-
 ## API Endpoints
 
-- GET /api/products - Get all products (with pagination, filtering, and sorting)
-- GET /api/products/:id - Get a single product
-- POST /api/products - Create a new product (Admin only)
-- PUT /api/products/:id - Update a product (Admin only)
-- DELETE /api/products/:id - Delete a product (Admin only)
+## baseurl = http://localhost:6600/api/v1
+
+- GET ${baseurl}/products - Get all products (with pagination, filtering, and sorting)
+- POST ${baseurl}/products/create-product - Create a new product (Admin only)
+- PUT ${baseurl}/products/update-product?productId=${productId} - Update a product (Admin only)
+- DELETE ${baseurl}/products?productId=${productId} - Delete a product (Admin only)
 
 ## Query Parameters
 
@@ -103,3 +100,24 @@ npm test
 - search: Search products by name
 - sortBy: Sort by field (price, name, stockQuantity)
 - sortOrder: Sort order (ASC or DESC)
+
+## Scripts
+
+Start the server: npm run dev [development mode]  
+start : npm run start [production mode]  
+build : npm run build [for production]
+
+# Migrations
+
+## local
+
+- Generate local migration : npm run migrate:generate ${name}
+- Push migration to local db : npm run migrate:apply
+- Revert most recent migration : npm run revert:recent:migration
+
+## Remote
+
+- Generate migration : npm run create:superbase:migration ${name}
+- Apply migration : npm run superbase:apply
+- Force apply migration : npm run superbase:force:apply
+- Revert migration : npm run revert:superbase:migration
