@@ -1,6 +1,6 @@
-import { AppError } from '../middleware/errorHandler';
-import Product from '../models/productModel';
-import { type productType } from '../validation/productSchema';
+import { AppError } from '../../middleware/errorHandler';
+import Product from '../../models/productModel';
+import { type productType } from '../../validation/productSchema';
 
 export async function updateProductService(payload: productType): Promise<any> {
   try {

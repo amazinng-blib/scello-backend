@@ -1,11 +1,13 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { UserType } from '../models/userModel';
 dotenv.config();
 
-export const generateAccessToken = async (id: string): Promise<string> => {
+export const generateAccessToken = async (user: UserType): Promise<string> => {
+  const payload = { id: user.id };
   try {
     const accessToken = jwt.sign(
-      { id },
+      payload,
       process.env.ACCESS_TOKEN_SECRET as Secret,
       { expiresIn: '7d' }
     );

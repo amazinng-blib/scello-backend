@@ -6,7 +6,7 @@ export enum Role {
   USER = 'USER',
   MARKETER = 'MARKETER',
 }
-type UserType = {
+export type UserType = {
   id?: number;
   firstName: string;
   lastName: string;

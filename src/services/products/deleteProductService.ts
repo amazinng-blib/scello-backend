@@ -1,5 +1,5 @@
-import { AppError } from '../middleware/errorHandler';
-import Product from '../models/productModel';
+import { AppError } from '../../middleware/errorHandler';
+import Product from '../../models/productModel';
 
 export async function deleteProductService(productId: number): Promise<any> {
   try {

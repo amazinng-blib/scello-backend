@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { deleteProductService } from '../services/deleteProductService';
+import { deleteProductService } from '../../services/products/deleteProductService';
 
 export async function deleteProduct(req: Request, res: Response): Promise<any> {
   try {
@@ -7,10 +7,6 @@ export async function deleteProduct(req: Request, res: Response): Promise<any> {
     await deleteProductService(productId as unknown as number);
     return res.status(200).json({ message: 'Product deleted successfully' });
   } catch (error: any) {
-    if (error instanceof Error) {
-      res.status(400).json({ error: error.message });
-    } else {
-      res.status(500).json({ error: 'Internal server error' });
-    }
+    res.status(500).json({ error: 'Internal server error' });
   }
 }

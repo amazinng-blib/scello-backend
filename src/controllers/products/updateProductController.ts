@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { productSchema } from '../validation/productSchema';
-import { updateProductService } from '../services/updateProductService';
+import { productSchema } from '../../validation/productSchema';
+import { updateProductService } from '../../services/products/updateProductService';
+import { ZodError } from 'zod';
 
 export async function updateProduct(req: Request, res: Response): Promise<any> {
   try {
@@ -11,8 +12,11 @@ export async function updateProduct(req: Request, res: Response): Promise<any> {
       data: product,
     });
   } catch (error: any) {
-    if (error instanceof Error) {
-      res.status(400).json({ error: error.message });
+    if (error instanceof ZodError) {
+      res
+        .status(400)
+        .json({ error: 'Please make sure you provide right input' });
+      console.log('zodError', error.message);
     } else {
       res.status(500).json({ error: 'Internal server error' });
     }

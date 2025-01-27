@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { adminMiddleware } from '../middleware/adminMiddleware';
-import { createProductController } from '../controllers/createProductController';
-import { updateProduct } from '../controllers/updateProductController';
-import { deleteProduct } from '../controllers/deleteProductController';
-import { fetchProducts } from '../controllers/fetchProductsController';
+import { createProductController } from '../controllers/products/createProductController';
+import { updateProduct } from '../controllers/products/updateProductController';
+import { deleteProduct } from '../controllers/products/deleteProductController';
+import { fetchProducts } from '../controllers/products/fetchProductsController';
 
 export const router = Router();
 
