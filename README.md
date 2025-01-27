@@ -71,6 +71,25 @@ Access the Swagger documentation at \`${baseurl}/api-docs\`
 
 ## Database Schema
 
+```
+export enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  MARKETER = 'MARKETER',
+}
+
+```
+
+### User Table
+
+- id: INTEGER (Primary Key, Auto Increment)
+- firstName: STRING (Not Null)
+- lastName: STRING (Not Null)
+- email: STRING (Not Null)
+- password: STRING (Not Null)
+- role: Role
+- createdAt: DATE
+
 ### Products Table
 
 - id: INTEGER (Primary Key, Auto Increment)
@@ -84,6 +103,13 @@ Access the Swagger documentation at \`${baseurl}/api-docs\`
 ## API Endpoints
 
 ## baseurl = http://localhost:6600/api/v1
+
+### User routes
+
+- POST - ${baseurl}/users/register - register new user for testing
+- POST - ${baseurl}/users/login - login to get access token
+
+### Products routes
 
 - GET - ${baseurl}/products - Get all products (with pagination, filtering, and sorting)
 - POST - ${baseurl}/products/create-product - Create a new product (Admin only)
@@ -121,3 +147,17 @@ build : npm run build [for production]
 - Apply migration : npm run superbase:apply
 - Force apply migration : npm run superbase:force:apply
 - Revert migration : npm run revert:superbase:migration
+
+## NOTE:
+
+- To be able to create product with the api, use admin user details to login
+
+```
+{
+    "email": "admin@gmail.com",
+    "password": "Admin$$2020"
+}
+
+```
+
+- To test for non admin user, register and try to create a product
