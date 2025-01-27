@@ -16,6 +16,7 @@ export function handleError(error: any, res: Response) {
   }
 
   // For other unhandled errors, send a 500 Internal Server Error
+  // log the error to developers for debugging
   console.error(error);
   return res.status(500).json({ error: 'Internal server error' });
 }

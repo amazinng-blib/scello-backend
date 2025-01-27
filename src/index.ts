@@ -45,12 +45,12 @@ app.use(
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use(notFoundHandler);
-app.use(errorHandler);
-
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello Scello backend!!');
 });
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 const PORT = process.env.PORT ?? 55000;
 
