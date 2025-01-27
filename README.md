@@ -65,8 +65,6 @@ A RESTful API for managing products in an e-commerce store built with Node.js, E
    PROD_DB_HOST=''  
    PROD_DB_PORT=5432
 
-## API Documentation
-
 Access the Swagger documentation at \`${baseurl}/api-docs\`
 
 ## Database Schema
@@ -99,6 +97,8 @@ export enum Role {
 - stockQuantity: INTEGER (Not Null)
 - category: STRING (Not Null)
 - createdAt: DATE
+
+## API Documentation
 
 ## API Endpoints
 
