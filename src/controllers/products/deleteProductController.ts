@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { deleteProductService } from '../../services/products/deleteProductService';
+import { handleError } from '../../utils/handleError';
 
 export async function deleteProduct(req: Request, res: Response): Promise<any> {
   try {
@@ -7,6 +8,6 @@ export async function deleteProduct(req: Request, res: Response): Promise<any> {
     await deleteProductService(productId as unknown as number);
     return res.status(200).json({ message: 'Product deleted successfully' });
   } catch (error: any) {
-    res.status(500).json({ error: 'Internal server error' });
+    handleError(error, res);
   }
 }

@@ -1,22 +1,35 @@
 import { AppError } from '../../middleware/errorHandler';
 import Product from '../../models/productModel';
-import { type productType } from '../../validation/productSchema';
+import { type updateProductType } from '../../validation/productSchema';
 
-export async function updateProductService(payload: productType): Promise<any> {
-  try {
-    const { name, category } = payload;
-    const productExist = await Product.findOne({
-      where: { name, category },
-    });
+export async function updateProductService(
+  payload: updateProductType
+): Promise<any> {
+  const { name, category, id } = payload;
 
-    if (!productExist) {
-      throw new AppError('Product not found', 404);
-    }
+  let where: any = {};
+  if (id) where.id = id;
+  if (name) where.name = name;
+  if (category) where.category = category;
+  const productExist = await Product.findOne(where);
+  console.log(payload);
 
-    // update the product details
-    const result = await productExist.update(payload);
-    return result;
-  } catch (error: any) {
-    throw new AppError('Error updating product: ' + error.message, 500);
+  if (!productExist) {
+    throw new AppError('Product not found', 404);
   }
+
+  // update the product details
+  const result = await productExist.update({
+    ...payload,
+    stockQuantity:
+      productExist.stockQuantity +
+      (payload.stockQuantity ? payload.stockQuantity : 0),
+  });
+
+  const response = {
+    message: 'Product updated successfully',
+    data: result,
+  };
+
+  return response;
 }

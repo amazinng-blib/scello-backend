@@ -16,57 +16,57 @@ type fetchProductQueryType = {
 export async function fetchProductService(
   payload: fetchProductQueryType
 ): Promise<any> {
-  try {
-    const {
-      category,
-      limit,
-      maxPrice,
-      minPrice,
-      page,
-      search,
-      sortBy,
-      sortOrder,
-    } = payload;
-    const offset = (page - 1) * limit;
+  const {
+    category,
+    limit,
+    maxPrice,
+    minPrice,
+    page,
+    search,
+    sortBy,
+    sortOrder,
+  } = payload;
+  const offset = (page - 1) * limit;
 
-    const whereClause: any = {};
-    if (category) {
-      whereClause.category = category;
+  const whereClause: any = {};
+  if (category) {
+    whereClause.category = category;
+  }
+
+  if (search) {
+    whereClause.name = { [Op.iLike]: `%${search}%` };
+  }
+
+  if (minPrice || maxPrice) {
+    if (minPrice && maxPrice) {
+      whereClause.price = { [Op.between]: [minPrice, maxPrice] };
+    } else if (minPrice) {
+      whereClause.price = { [Op.gte]: minPrice };
+    } else if (maxPrice) {
+      whereClause.price = { [Op.lte]: maxPrice };
     }
+  }
 
-    if (search) {
-      whereClause.name = { [Op.iLike]: `%${search}%` };
-    }
+  const orderClause: any = [];
+  if (sortBy) {
+    orderClause.push([sortBy, sortOrder ?? 'ASC']);
+  }
 
-    if (minPrice || maxPrice) {
-      if (minPrice && maxPrice) {
-        whereClause.price = { [Op.between]: [minPrice, maxPrice] };
-      } else if (minPrice) {
-        whereClause.price = { [Op.gte]: minPrice };
-      } else if (maxPrice) {
-        whereClause.price = { [Op.lte]: maxPrice };
-      }
-    }
-
-    const orderClause: any = [];
-    if (sortBy) {
-      orderClause.push([sortBy, sortOrder ?? 'ASC']);
-    }
-
-    const { count, rows } = await Product.findAndCountAll({
-      where: whereClause,
-      order: orderClause,
-      limit,
-      offset,
-    });
-
-    return {
+  const { count, rows } = await Product.findAndCountAll({
+    where: whereClause,
+    order: orderClause,
+    limit,
+    offset,
+  });
+  const response = {
+    message: 'Products fetched successfully',
+    data: {
       total: count,
       products: rows,
       page: Math.ceil(count / limit),
       currentPage: page,
-    };
-  } catch (error: any) {
-    throw new AppError('Error fetching product: ' + error.message, 500);
-  }
+    },
+  };
+
+  return response;
 }

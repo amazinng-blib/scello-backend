@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { ZodError } from 'zod';
 import { UserSchema } from '../../validation/userSchema';
 import { registerUserService } from '../../services/auth/registerService';
+import { handleError } from '../../utils/handleError';
 
 export async function registerUser(req: Request, res: Response): Promise<any> {
   try {
@@ -9,13 +9,6 @@ export async function registerUser(req: Request, res: Response): Promise<any> {
     const response = await registerUserService(requestData);
     return res.status(201).json(response);
   } catch (error: any) {
-    if (error instanceof ZodError) {
-      res
-        .status(400)
-        .json({ error: 'Please make sure you provide right input' });
-      console.log('zodError', error.message);
-    } else {
-      res.status(500).json({ error: 'Internal server error' });
-    }
+    handleError(error, res);
   }
 }

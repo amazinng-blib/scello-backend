@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import { fetchProductService } from '../../services/products/fetchProductService';
+import { handleError } from '../../utils/handleError';
 
 export async function fetchProducts(req: Request, res: Response): Promise<any> {
   try {
-    const page = Number.parseInt(req.query.page as string) ?? 1;
-    const limit = Number.parseInt(req.query.limit as string) ?? 10;
+    const page = Number.parseInt((req.query.page as string) ?? 1) ?? 1;
+    const limit = Number.parseInt((req.query.limit as string) ?? 10) ?? 10;
     const { category, maxPrice, minPrice, search, sortBy, sortOrder } =
       req.query;
 
@@ -21,6 +22,6 @@ export async function fetchProducts(req: Request, res: Response): Promise<any> {
 
     return res.status(200).json(products);
   } catch (error: any) {
-    res.status(500).json({ error: 'Internal server error' });
+    handleError(error, res);
   }
 }

@@ -1,19 +1,13 @@
 'use strict';
 
-const {
-  AutoIncrement,
-  PrimaryKey,
-  AllowNull,
-} = require('sequelize-typescript');
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('products', {
       id: {
         type: Sequelize.INTEGER,
-        AutoIncrement: true,
-        PrimaryKey: true,
+        autoIncrement: true,
+        primaryKey: true,
       },
       creator: {
         type: Sequelize.INTEGER,
@@ -51,7 +45,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface) {
+  async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('products');
   },
 };
