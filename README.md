@@ -85,10 +85,10 @@ Access the Swagger documentation at \`${baseurl}/api-docs\`
 
 ## baseurl = http://localhost:6600/api/v1
 
-- GET ${baseurl}/products - Get all products (with pagination, filtering, and sorting)
-- POST ${baseurl}/products/create-product - Create a new product (Admin only)
-- PUT ${baseurl}/products/update-product?productId=${productId} - Update a product (Admin only)
-- DELETE ${baseurl}/products?productId=${productId} - Delete a product (Admin only)
+- GET - ${baseurl}/products - Get all products (with pagination, filtering, and sorting)
+- POST - ${baseurl}/products/create-product - Create a new product (Admin only)
+- PUT - ${baseurl}/products/update-product?productId=${productId} - Update a product (Admin only)
+- DELETE - ${baseurl}/products?productId=${productId} - Delete a product (Admin only)
 
 ## Query Parameters
 
