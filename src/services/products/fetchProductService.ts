@@ -1,5 +1,4 @@
 import { Op } from 'sequelize';
-import { AppError } from '../../middleware/errorHandler';
 import Product from '../../models/productModel';
 
 type fetchProductQueryType = {

@@ -57,6 +57,11 @@ User.init(
       allowNull: false,
       defaultValue: Role.USER,
     },
+
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,

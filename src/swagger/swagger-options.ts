@@ -241,7 +241,7 @@ export const swaggerOptions: Options = {
                     },
                     password: {
                       type: 'string',
-                      example: 'Admin$$2020',
+                      example: 'Admin$2020',
                     },
                   },
                 },
