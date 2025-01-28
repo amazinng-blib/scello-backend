@@ -11,12 +11,12 @@ export const swaggerOptions: Options = {
     },
     servers: [
       {
-        url: 'http://localhost:6600/api/v1',
-        description: 'Local server',
-      },
-      {
         url: 'https://scello-backend.onrender.com/api/v1',
         description: 'remote server',
+      },
+      {
+        url: 'http://localhost:6600/api/v1',
+        description: 'Local server',
       },
     ],
 
