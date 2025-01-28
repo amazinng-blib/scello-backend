@@ -17,5 +17,5 @@ export async function loginService(input: LoginSchemaType): Promise<any> {
 
   const accessToken = await generateAccessToken(user);
   const { password, ...rest } = user.dataValues;
-  return { accessToken, user: rest };
+  return { message: 'Logged in successfully', accessToken, user: rest };
 }
