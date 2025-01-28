@@ -57,15 +57,24 @@ export async function fetchProductService(
     limit,
     offset,
   });
-  const response = {
-    message: 'Products fetched successfully',
-    data: {
-      total: count,
-      products: rows,
-      page: Math.ceil(count / limit),
-      currentPage: page,
-    },
-  };
+
+  let response;
+
+  if (rows.length < 1) {
+    response = {
+      message: 'No Products posted yet.',
+    };
+  } else {
+    response = {
+      message: 'Products fetched successfully',
+      data: {
+        total: count,
+        products: rows,
+        page: Math.ceil(count / limit),
+        currentPage: page,
+      },
+    };
+  }
 
   return response;
 }

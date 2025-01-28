@@ -15,7 +15,7 @@ export const swaggerOptions: Options = {
         description: 'Local server',
       },
       {
-        url: 'https://localhost:6600/api/v1',
+        url: 'https://scello-backend.onrender.com/api/v1',
         description: 'remote server',
       },
     ],

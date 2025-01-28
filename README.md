@@ -2,6 +2,10 @@
 
 A RESTful API for managing products in an e-commerce store built with Node.js, Express, TypeScript, and Sequelize.
 
+baseUrl = [baseUrl](https://scello-backend.onrender.com/)  
+Swagger Docs = [Swagger Docs](https://scello-backend.onrender.com/api-docs)  
+github = [github Link](https://github.com/amazinng-blib/scello-backend.git)
+
 ## Features
 
 - CRUD operations for products
@@ -32,7 +36,7 @@ A RESTful API for managing products in an e-commerce store built with Node.js, E
 
 - # Clone
 
-  - git clone {url}
+  - git clone {github} || [git clone](git clone )
 
   - # Install dependencies
   - npm install
@@ -40,7 +44,7 @@ A RESTful API for managing products in an e-commerce store built with Node.js, E
   - # Set up environment variables
 
   LOCAL_DATABASE_URL=postgres://postgres:postgress@localhost:5432/scello  
-   DATABASE-URL=postgresql://postgres.pdzevovwkbldszognlex:[PASSWORD]@aws-0-eu-central-1.pooler.supabase.com:5432/postgres
+   DATABASE-URL=''
 
   PORT=6600
 
@@ -65,7 +69,7 @@ A RESTful API for managing products in an e-commerce store built with Node.js, E
    PROD_DB_HOST=''  
    PROD_DB_PORT=5432
 
-Access the Swagger documentation at \`${baseurl}/api-docs\`
+Access the Swagger documentation at \`${baseUrl}/api-docs\`
 
 ## Database Schema
 
@@ -102,19 +106,17 @@ export enum Role {
 
 ## API Endpoints
 
-## baseurl = http://localhost:6600/api/v1
-
 ### User routes
 
-- POST - ${baseurl}/users/register - register new user for testing
-- POST - ${baseurl}/users/login - login to get access token
+- POST - ${baseUrl}/users/register - register new user for testing
+- POST - ${baseUrl}/users/login - login to get access token
 
 ### Products routes
 
-- GET - ${baseurl}/products - Get all products (with pagination, filtering, and sorting)
-- POST - ${baseurl}/products/create-product - Create a new product (Admin only)
-- PUT - ${baseurl}/products/update-product?productId=${productId} - Update a product (Admin only)
-- DELETE - ${baseurl}/products?productId=${productId} - Delete a product (Admin only)
+- GET - ${baseUrl}/products - Get all products (with pagination, filtering, and sorting)
+- POST - ${baseUrl}/products/create-product - Create a new product (Admin only)
+- PUT - ${baseUrl}/products/update-product?productId=${productId} - Update a product (Admin only)
+- DELETE - ${baseUrl}/products?productId=${productId} - Delete a product (Admin only)
 
 ## Query Parameters
 
