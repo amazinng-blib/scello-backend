@@ -157,7 +157,7 @@ build : npm run build [for production]
 ```
 {
     "email": "admin@gmail.com",
-    "password": "Admin$$2020"
+    "password": "Admin$2020"
 }
 
 ```
