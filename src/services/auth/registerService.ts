@@ -14,7 +14,10 @@ export async function registerUserService(input: UserSchemaType): Promise<any> {
   }
 
   if (!validator.isStrongPassword(input.password)) {
-    throw new AppError('Password must be at least 6 characters long', 400);
+    throw new AppError(
+      'Password is too weak. Please use a stronger password with a mix of uppercase, lowercase, numbers, and special characters.',
+      400
+    );
   }
 
   // check if user already exist
