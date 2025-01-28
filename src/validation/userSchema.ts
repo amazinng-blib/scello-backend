@@ -11,7 +11,7 @@ export const UserSchema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Invalid email format'),
   password: z.string().min(6, 'Password must be at least 6 characters long'),
-  role: z.nativeEnum(Role).default(Role.ADMIN),
+  role: z.nativeEnum(Role).default(Role.USER),
   createdAt: z.date().optional(),
 });
 
