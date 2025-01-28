@@ -11,8 +11,7 @@ export async function updateProductService(
   if (id) where.id = id;
   if (name) where.name = name;
   if (category) where.category = category;
-  const productExist = await Product.findOne(where);
-  console.log(payload);
+  const productExist = await Product.findOne({ where });
 
   if (!productExist) {
     throw new AppError('Product not found', 404);
