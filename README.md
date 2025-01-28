@@ -50,8 +50,8 @@ github = [github Link](https://github.com/amazinng-blib/scello-backend.git)
 
   ACCESS_TOKEN_SECRET=
 
-  MIGRATION_ENV=superbase [remote]  
-   MIGRATION_ENV=local [local]
+  MIGRATION_ENV=superbase [enable in remote remote]  
+   MIGRATION_ENV=local [enable in local]
 
   NODE_ENV=production  
    NODE_ENV=development
