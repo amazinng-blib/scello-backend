@@ -23,6 +23,7 @@ export const swaggerOptions: Options = {
     paths: {
       '/products': {
         get: {
+          tags: ['Product Routes'],
           summary: 'Get all products',
           description:
             'Retrieve a list of products with optional filtering, pagination, and sorting',
@@ -133,6 +134,7 @@ export const swaggerOptions: Options = {
       },
       '/products/create-product': {
         post: {
+          tags: ['Product Routes'],
           summary: 'Create a new product',
           security: [
             {
@@ -194,6 +196,7 @@ export const swaggerOptions: Options = {
       },
       '/products/update-product': {
         put: {
+          tags: ['Product Routes'],
           summary: 'Update an existing product',
           security: [
             {
@@ -248,6 +251,7 @@ export const swaggerOptions: Options = {
 
       '/products/delete-product': {
         delete: {
+          tags: ['Product Routes'],
           summary: 'Delete a product',
           security: [
             {
@@ -281,6 +285,7 @@ export const swaggerOptions: Options = {
       },
       '/users/register': {
         post: {
+          tags: ['Auth Routes'],
           summary: 'Register a new user',
           requestBody: {
             required: true,
@@ -333,6 +338,7 @@ export const swaggerOptions: Options = {
       },
       '/users/login': {
         post: {
+          tags: ['Auth Routes'],
           summary: 'Login a user and generate a token',
           requestBody: {
             required: true,
