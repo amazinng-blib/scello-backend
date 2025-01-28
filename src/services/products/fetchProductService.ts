@@ -29,7 +29,7 @@ export async function fetchProductService(
 
   const whereClause: any = {};
   if (category) {
-    whereClause.category = category;
+    whereClause.category = { [Op.iLike]: `${category}` };
   }
 
   if (search) {
@@ -60,9 +60,9 @@ export async function fetchProductService(
 
   let response;
 
-  if (rows.length < 1) {
+  if (!rows.length) {
     response = {
-      message: 'No Products posted yet.',
+      message: 'No Product found',
     };
   } else {
     response = {

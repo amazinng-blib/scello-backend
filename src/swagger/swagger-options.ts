@@ -19,10 +19,101 @@ export const swaggerOptions: Options = {
         description: 'remote server',
       },
     ],
+
     paths: {
       '/products': {
         get: {
           summary: 'Get all products',
+          description:
+            'Retrieve a list of products with optional filtering, pagination, and sorting',
+          parameters: [
+            {
+              name: 'page',
+              in: 'query',
+              description: 'Page number for pagination',
+              required: false,
+              schema: {
+                type: 'integer',
+                minimum: 1,
+                example: 1,
+              },
+            },
+            {
+              name: 'limit',
+              in: 'query',
+              description: 'Number of items per page',
+              required: false,
+              schema: {
+                type: 'integer',
+                minimum: 1,
+                example: 10,
+              },
+            },
+            {
+              name: 'category',
+              in: 'query',
+              description: 'Filter by category',
+              required: false,
+              schema: {
+                type: 'string',
+                example: 'electronics',
+              },
+            },
+            {
+              name: 'minPrice',
+              in: 'query',
+              description: 'Filter by minimum price',
+              required: false,
+              schema: {
+                type: 'number',
+                format: 'float',
+                example: 10.99,
+              },
+            },
+            {
+              name: 'maxPrice',
+              in: 'query',
+              description: 'Filter by maximum price',
+              required: false,
+              schema: {
+                type: 'number',
+                format: 'float',
+                example: 99.99,
+              },
+            },
+            {
+              name: 'search',
+              in: 'query',
+              description: 'Search products by name',
+              required: false,
+              schema: {
+                type: 'string',
+                example: 'laptop',
+              },
+            },
+            {
+              name: 'sortBy',
+              in: 'query',
+              description: 'Sort by field (price, name, stockQuantity)',
+              required: false,
+              schema: {
+                type: 'string',
+                enum: ['price', 'name', 'stockQuantity'],
+                example: 'price',
+              },
+            },
+            {
+              name: 'sortOrder',
+              in: 'query',
+              description: 'Sort order (ASC or DESC)',
+              required: false,
+              schema: {
+                type: 'string',
+                enum: ['ASC', 'DESC'],
+                example: 'ASC',
+              },
+            },
+          ],
           responses: {
             '200': {
               description: 'List of products',
@@ -43,6 +134,11 @@ export const swaggerOptions: Options = {
       '/products/create-product': {
         post: {
           summary: 'Create a new product',
+          security: [
+            {
+              bearerAuth: [],
+            },
+          ],
           requestBody: {
             required: true,
             content: {
@@ -99,6 +195,11 @@ export const swaggerOptions: Options = {
       '/products/update-product': {
         put: {
           summary: 'Update an existing product',
+          security: [
+            {
+              bearerAuth: [],
+            },
+          ],
           parameters: [
             {
               name: 'productId',
@@ -148,6 +249,11 @@ export const swaggerOptions: Options = {
       '/products/delete-product': {
         delete: {
           summary: 'Delete a product',
+          security: [
+            {
+              bearerAuth: [],
+            },
+          ],
           parameters: [
             {
               name: 'productId',
@@ -360,6 +466,13 @@ export const swaggerOptions: Options = {
             },
           },
           required: ['firstName', 'lastName', 'email', 'password', 'role'],
+        },
+      },
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
         },
       },
     },
